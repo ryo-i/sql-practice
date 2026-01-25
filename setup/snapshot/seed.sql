@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Jc05rOFeaLdqcjOeLkH55QN10dum7747K84KQNTeirnzvzgMPwDuURrRdKJM1et
+\restrict C7hN3ObXluij2sIzbUJspdMa4IwwFBJCQcfqrgN5dnEwQ5UX7HerdZGyFNMhTZX
 
 -- Dumped from database version 14.20 (Homebrew)
 -- Dumped by pg_dump version 14.20 (Homebrew)
@@ -70,7 +70,8 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 COPY public.users (id, name, email, created_at) FROM stdin;
-1	Alice	alice@example.com	2026-01-25 16:58:04.022849
+3	Carol	carol@example.com	2026-01-25 18:21:47.136245
+1	Alice Cooper	alice.cooper@example.com	2026-01-25 18:21:47.136245
 \.
 
 
@@ -78,7 +79,7 @@ COPY public.users (id, name, email, created_at) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iidaryou
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --
@@ -101,5 +102,5 @@ ALTER TABLE ONLY public.users
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Jc05rOFeaLdqcjOeLkH55QN10dum7747K84KQNTeirnzvzgMPwDuURrRdKJM1et
+\unrestrict C7hN3ObXluij2sIzbUJspdMa4IwwFBJCQcfqrgN5dnEwQ5UX7HerdZGyFNMhTZX
 

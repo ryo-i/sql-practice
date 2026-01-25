@@ -47,12 +47,12 @@ $ brew services start postgresql
 
 DB作成
 ```bash
-sql_practice=# createdb sql_practice
+$ createdb sql_practice
 ```
 
 psql起動
 ```bash
-sql_practice=# psql sql_practice
+$ psql sql_practice
 ```
 
 （psql終了）
@@ -107,3 +107,25 @@ $ pg_dump sql_practice > setup/snapshot/seed.sql
 ```
 - seed.sql を実行すれば、一発でテーブル作成とデータ投入が再現できます
 - 学習用に追加した CRUD データも含まれます
+
+### CRUD
+
+Create: INSERT 基本
+```bash
+sql_practice=# \i basic/01_insert.sql
+```
+
+Read: SELECT 基本
+```bash
+sql_practice=# \i basic/02_select.sql
+```
+
+Update: UPDATE 基本
+```bash
+sql_practice=# \i basic/03_update.sql
+```
+
+Delte: DELETE 基本
+```bash
+sql_practice=# \i basic/04_delete.sql
+```

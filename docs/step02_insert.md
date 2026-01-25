@@ -1,8 +1,11 @@
 docs/step02_insert.md
-```
+```sql
 -- INSERT文の基本構文
 -- INSERT INTO [table_name] ([column1], [column2], ...)
 -- VALUES ([value1], [value2], ...);
+
+INSERT INTO users (name, email)
+VALUES ('Alice', 'alice@example.com');
 ```
 
 ```
@@ -20,6 +23,5 @@ sql_practice=# SELECT * FROM users;
 ----+-------+-------------------+----------------------------
   1 | Alice | alice@example.com | 2026-01-25 16:58:04.022849
 (1 row)
-
 ```
 
