@@ -9,9 +9,9 @@ PostgreSQL + psql を使って学習した記録を残すものです。
 - [x] データベース作成・接続
 - [x] テーブル作成（DDL）
 - [x] INSERT（データ投入）
-- [ ] CRUD（単一テーブル）
-- [ ] テーブル定義の変更（ALTER TABLE）
-- [ ] 既存レコードの補完・修正（UPDATE）
+- [x] CRUD（単一テーブル）
+- [x] テーブル定義の変更（ALTER TABLE）
+- [x] 既存レコードの補完・修正（UPDATE）
 - [ ] 複数テーブル設計（外部キー）
 - [ ] JOIN
 - [ ] 集計・GROUP BY
@@ -35,11 +35,11 @@ $ brew install postgresql
 ```
 
 起動確認
-```bach
+```bash
 $ pg_isready
 ```
 （起動してない場合）
-```
+```bash
 $ brew services start postgresql
 ```
 
@@ -108,7 +108,7 @@ $ pg_dump sql_practice > setup/snapshot/seed.sql
 - seed.sql を実行すれば、一発でテーブル作成とデータ投入が再現できます
 - 学習用に追加した CRUD データも含まれます
 
-### CRUD
+### CRUD（単一テーブル）
 
 Create: INSERT 基本
 ```bash
@@ -128,4 +128,21 @@ sql_practice=# \i basic/03_update.sql
 Delte: DELETE 基本
 ```bash
 sql_practice=# \i basic/04_delete.sql
+```
+
+### テーブル定義の変更（ALTER TABLE）
+
+テーブルの定義変更を反映
+```bash
+sql_practice=# \i setup/migrations/02_add_columns_to_users.sql
+```
+
+Insert実行
+```bash
+sql_practice=# \i basic/01_insert.sql
+```
+
+Update実行
+```bash
+sql_practice=# \i basic/03_update.sql
 ```
