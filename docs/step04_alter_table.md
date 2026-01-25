@@ -13,7 +13,7 @@ ALTER TABLE users ADD COLUMN city TEXT;
 ALTER TABLE users ADD COLUMN is_active BOOLEAN DEFAULT FALSE;
 ```
 
-basic/03_update.sql
+basic/03_update_users.sql
 ```sql
 -- 既存レコードの補完例
 -- id=1 Alice, id=2 Bob, id=3 Carol に対して補完
@@ -61,7 +61,7 @@ ALTER TABLE
 
 Insert実行
 ```bash
-sql_practice=# \i basic/01_insert.sql
+sql_practice=# \i basic/01_insert_users.sql
 TRUNCATE TABLE
 INSERT 0 3
  id | name  |       email       |         created_at         | age | city | is_active 
@@ -74,7 +74,7 @@ INSERT 0 3
 
 Update実行
 ```bash
-sql_practice=# \i basic/03_update.sql
+sql_practice=# \i basic/03_update_users.sql
 UPDATE 1
 UPDATE 1
 UPDATE 1

@@ -12,7 +12,8 @@ PostgreSQL + psql を使って学習した記録を残すものです。
 - [x] CRUD（単一テーブル）
 - [x] テーブル定義の変更（ALTER TABLE）
 - [x] 既存レコードの補完・修正（UPDATE）
-- [ ] 複数テーブル設計（外部キー）
+- [x] 複数テーブル設計（外部キー）
+- [ ] 外部キー制約の挙動確認
 - [ ] JOIN
 - [ ] 集計・GROUP BY
 - [ ] インデックス & 実行計画
@@ -69,7 +70,7 @@ sql_practice=# \q
 
 テーブル作成
 ```bash
-sql_practice=# \i setup/migrations/01_create_tables.sql
+sql_practice=# \i setup/migrations/01_create_users.sql
 ```
 
 テーブル一覧
@@ -86,7 +87,7 @@ sql_practice=# \d users
 
 psql の中で INSERT ファイルを実行
 ```bash
-sql_practice=# \i basic/01_insert.sql
+sql_practice=# \i basic/01_insert_users.sql
 ```
 
 データの確認
@@ -112,17 +113,17 @@ $ pg_dump sql_practice > setup/snapshot/seed.sql
 
 Create: INSERT 基本
 ```bash
-sql_practice=# \i basic/01_insert.sql
+sql_practice=# \i basic/01_insert_users.sql
 ```
 
 Read: SELECT 基本
 ```bash
-sql_practice=# \i basic/02_select.sql
+sql_practice=# \i basic/02_select_users.sql
 ```
 
 Update: UPDATE 基本
 ```bash
-sql_practice=# \i basic/03_update.sql
+sql_practice=# \i basic/03_update_users.sql
 ```
 
 Delte: DELETE 基本
@@ -139,10 +140,22 @@ sql_practice=# \i setup/migrations/02_add_columns_to_users.sql
 
 Insert実行
 ```bash
-sql_practice=# \i basic/01_insert.sql
+sql_practice=# \i basic/01_insert_users.sql
 ```
 
 Update実行
 ```bash
-sql_practice=# \i basic/03_update.sql
+sql_practice=# \i basic/03_update_users.sql
+```
+
+### 複数テーブル設計（外部キー）
+
+migration（DDL）
+```bash
+sql_practice=# \i setup/migrations/03_create_posts.sql
+```
+
+basic（DML）
+```bash
+sql_practice=# \i basic/05_insert_posts.sql
 ```

@@ -21,7 +21,7 @@ SELECT * FROM users;
 ```
 
 ```bash
-sql_practice-# \i basic/01_insert.sql
+sql_practice-# \i basic/01_insert_users.sql
 TRUNCATE TABLE
 INSERT 0 3
  id | name  |       email       |         created_at         
@@ -64,7 +64,7 @@ LIMIT 2;
 ```
 
 ```bash
-sql_practice-# \i basic/02_select.sql
+sql_practice-# \i basic/02_select_users.sql
  id | name  |       email       |         created_at         
 ----+-------+-------------------+----------------------------
   1 | Alice | alice@example.com | 2026-01-25 18:21:47.136245
@@ -121,7 +121,7 @@ SELECT * FROM users;
 ```
 
 ```bash
-sql_practice-# \i basic/03_update.sql
+sql_practice-# \i basic/03_update_users.sql
 UPDATE 1
 UPDATE 1
  id |     name     |          email           |         created_at         

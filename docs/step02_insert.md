@@ -16,7 +16,7 @@ sql_practice=# SELECT * FROM users;
 ----+------+-------+------------
 (0 rows)
 
-sql_practice=# \i basic/01_insert.sql
+sql_practice=# \i basic/01_insert_users.sql
 INSERT 0 1
 sql_practice=# SELECT * FROM users;
  id | name  |       email       |         created_at         

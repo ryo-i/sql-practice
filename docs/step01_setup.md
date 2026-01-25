@@ -33,7 +33,7 @@ sql_practice=#
 ## テーブル作成
 
 ```sql
-sql_practice=# \i setup/migrations/01_create_tables.sql
+sql_practice=# \i setup/migrations/01_create_users.sql
 CREATE TABLE
 sql_practice=# \dt
          List of relations
