@@ -8,7 +8,7 @@ PostgreSQL + psql を使って学習した記録を残すものです。
 - [x] PostgreSQL / psql のセットアップ
 - [x] データベース作成・接続
 - [x] テーブル作成（DDL）
-- [ ] INSERT（データ投入）
+- [x] INSERT（データ投入）
 - [ ] CRUD（単一テーブル）
 - [ ] テーブル定義の変更（ALTER TABLE）
 - [ ] 既存レコードの補完・修正（UPDATE）
@@ -89,4 +89,21 @@ migrationsに段階的にDBを定義していくため、DBの最新版のスキ
 （psqlを開いている場合は一度閉じてターミナルで実行）
 ```bash
 $ pg_dump -s sql_practice > setup/snapshot/schema_latest_dump.sql
+```
+
+### INSERT（データ投入）
+
+psql の中で INSERT ファイルを実行
+```bash
+sql_practice=# \i basic/01_insert.sql
+```
+
+データの確認
+```bash
+sql_practice=# SELECT * FROM users;
+```
+
+（データがおかしくなった場合はリセット）
+```bash
+TRUNCATE TABLE users RESTART IDENTITY;
 ```
