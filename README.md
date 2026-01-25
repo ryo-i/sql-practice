@@ -82,15 +82,6 @@ sql_practice=# \dt
 sql_practice=# \d users
 ```
 
-### 最新のDBスキーマをダンプする
-
-migrationsに段階的にDBを定義していくため、DBの最新版のスキーマを取得する
-
-（psqlを開いている場合は一度閉じてターミナルで実行）
-```bash
-$ pg_dump -s sql_practice > setup/snapshot/schema_latest_dump.sql
-```
-
 ### INSERT（データ投入）
 
 psql の中で INSERT ファイルを実行
@@ -107,3 +98,12 @@ sql_practice=# SELECT * FROM users;
 ```bash
 TRUNCATE TABLE users RESTART IDENTITY;
 ```
+
+### 最新のseedデータをダンプする
+
+学習用に段階的に進めているため、最新版の DB 状態（テーブル構造＋データ）を seed として書き出すには下記を実行します：
+```bash
+$ pg_dump sql_practice > setup/snapshot/seed.sql
+```
+- seed.sql を実行すれば、一発でテーブル作成とデータ投入が再現できます
+- 学習用に追加した CRUD データも含まれます

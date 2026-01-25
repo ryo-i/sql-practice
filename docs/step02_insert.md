@@ -1,3 +1,10 @@
+docs/step02_insert.md
+```
+-- INSERT文の基本構文
+-- INSERT INTO [table_name] ([column1], [column2], ...)
+-- VALUES ([value1], [value2], ...);
+```
+
 ```
 sql_practice=# TRUNCATE TABLE users RESTART IDENTITY;
 TRUNCATE TABLE

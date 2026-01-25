@@ -1,5 +1,15 @@
 # Step 1: PostgreSQLセットアップとテーブル作成
 
+docs/step01_setup.md
+```
+ -- CREATE TABLE文の基本構文
+-- CREATE TABLE [table_name] (
+--   [column1] [type1] [constraint],
+--   [column2] [type2] [constraint],
+--   ...
+-- );
+```
+
 ## PostgreSQLのインストール・起動
 
 ```bash
