@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict C7hN3ObXluij2sIzbUJspdMa4IwwFBJCQcfqrgN5dnEwQ5UX7HerdZGyFNMhTZX
+\restrict dG9C1ZIoCudExPQ6EITsNU3MLOgUZPLUDu2eSkhprY2NOdLqBdnVurSXjZWD0bG
 
 -- Dumped from database version 14.20 (Homebrew)
 -- Dumped by pg_dump version 14.20 (Homebrew)
@@ -29,8 +29,11 @@ SET default_table_access_method = heap;
 CREATE TABLE public.users (
     id integer NOT NULL,
     name text NOT NULL,
-    email text NOT NULL,
-    created_at timestamp without time zone DEFAULT now()
+    email character varying(100) NOT NULL,
+    created_at timestamp without time zone DEFAULT now(),
+    age integer,
+    city text,
+    is_active boolean DEFAULT false
 );
 
 
@@ -69,9 +72,10 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: iidaryou
 --
 
-COPY public.users (id, name, email, created_at) FROM stdin;
-3	Carol	carol@example.com	2026-01-25 18:21:47.136245
-1	Alice Cooper	alice.cooper@example.com	2026-01-25 18:21:47.136245
+COPY public.users (id, name, email, created_at, age, city, is_active) FROM stdin;
+1	Alice Cooper	alice.cooper@example.com	2026-01-25 20:43:24.913606	25	Tokyo	t
+2	Bob	bob@example.com	2026-01-25 20:43:24.913606	30	Osaka	t
+3	Carol	carol@example.com	2026-01-25 20:43:24.913606	28	Nagoya	t
 \.
 
 
@@ -102,5 +106,5 @@ ALTER TABLE ONLY public.users
 -- PostgreSQL database dump complete
 --
 
-\unrestrict C7hN3ObXluij2sIzbUJspdMa4IwwFBJCQcfqrgN5dnEwQ5UX7HerdZGyFNMhTZX
+\unrestrict dG9C1ZIoCudExPQ6EITsNU3MLOgUZPLUDu2eSkhprY2NOdLqBdnVurSXjZWD0bG
 
