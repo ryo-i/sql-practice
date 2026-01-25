@@ -13,7 +13,7 @@ PostgreSQL + psql を使って学習した記録を残すものです。
 - [x] テーブル定義の変更（ALTER TABLE）
 - [x] 既存レコードの補完・修正（UPDATE）
 - [x] 複数テーブル設計（外部キー）
-- [ ] 外部キー制約の挙動確認
+- [x] 外部キー制約の挙動確認
 - [ ] JOIN
 - [ ] 集計・GROUP BY
 - [ ] インデックス & 実行計画
@@ -159,3 +159,18 @@ basic（DML）
 ```bash
 sql_practice=# \i basic/05_insert_posts.sql
 ```
+
+### 外部キー制約の挙動確認
+
+存在しない親を参照
+```bash
+sql_practice=# INSERT INTO posts (user_id, title, content)
+VALUES (999, '存在しないユーザーの投稿', 'これは失敗するはず');
+```
+→エラー
+
+親（users）を削除しようとする
+```bash
+sql_practice=# DELETE FROM users WHERE id = 1;
+```
+→エラー

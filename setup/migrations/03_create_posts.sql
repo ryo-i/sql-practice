@@ -22,3 +22,8 @@ CREATE TABLE posts (
     created_at TIMESTAMP DEFAULT now(),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+-- 外部キー制約により以下が保証される
+-- ・存在しない user_id を posts に入れられない
+-- ・投稿が存在する user は削除できない（RESTRICT）
+-- JOIN の前提となる参照整合性をDBが担保している
