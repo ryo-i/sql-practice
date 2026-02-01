@@ -1,0 +1,54 @@
+# JOIN
+
+### JOIN（行を増やす）
+
+目的
+- 外部キーで「つながっている」テーブルを どうやって一緒に取得するか
+- 1対多（users → posts） の実体をSQLで見る
+- 実務で一番使う INNER JOIN / LEFT JOIN の違い
+
+行を増やす
+```bash
+sql_practice=# \i basic/06_join_basic.sql
+ id |     name     |       title        
+----+--------------+--------------------
+  1 | Alice Cooper | 初めての投稿
+  2 | Bob          | Bobの日記
+  1 | Alice Cooper | Aliceの2つ目の投稿
+(3 rows)
+
+ id |     name     |       title        
+----+--------------+--------------------
+  1 | Alice Cooper | 初めての投稿
+  2 | Bob          | Bobの日記
+  1 | Alice Cooper | Aliceの2つ目の投稿
+  3 | Carol        | 
+(4 rows)
+```
+
+INNER JOINの結果（3 rows）
+posts が存在しない user は行ごと消える
+- JOIN条件を満たす組み合わせだけが残る
+- 「投稿があるユーザー一覧」を作りたいときに使う
+
+実務での典型用途
+- 投稿済みユーザー
+- 注文履歴のある顧客
+- 参加者のいるイベント
+
+LEFT JOIN の結果（4 rows）
+users を基準にして、posts がなければ NULL を詰める
+- users は絶対に消えない
+- 「未投稿ユーザー」も確認できる
+
+実務での典型用途
+- 投稿数0のユーザーを探す
+- 注文していない顧客を抽出
+- 設定未完了ユーザーの洗い出し
+
+ポイント
+JOIN は「行を増やす／減らす」操作
+- Alice が 2行になる → 1対多
+- Carol が消える or 残る → JOIN種別の違い
+- JOIN = テーブル結合
+- 結果セットの形をどうしたいかで選ぶ

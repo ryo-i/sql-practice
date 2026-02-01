@@ -14,9 +14,12 @@ PostgreSQL + psql を使って学習した記録を残すものです。
 - [x] 既存レコードの補完・修正（UPDATE）
 - [x] 複数テーブル設計（外部キー）
 - [x] 外部キー制約の挙動確認
-- [ ] JOIN
-- [ ] 集計・GROUP BY
-- [ ] インデックス & 実行計画
+- [x] JOIN（行を増やす）
+- [ ] JOIN + WHERE（絞り込み）
+- [ ] JOIN + COUNT（集計）
+- [ ] GROUP BY（本格集計）
+- [ ] インデックス
+- [ ] 実行計画
 
 ## 前提
 
@@ -174,3 +177,10 @@ VALUES (999, '存在しないユーザーの投稿', 'これは失敗するは�
 sql_practice=# DELETE FROM users WHERE id = 1;
 ```
 →エラー
+
+### JOIN
+
+行を増やす
+```bash
+sql_practice=# \i basic/06_join_basic.sql
+```
