@@ -76,3 +76,46 @@ sql_practice=# \i basic/07_join_where.sql
 - Carol の posts.title は NULL → WHERE 条件に合わず除外
 - LEFT JOIN を使っていてもWHERE に右テーブルの条件を書くと LEFT じゃなくなる
 - 実質 INNER JOIN と同じ振る舞い
+
+
+### JOIN + COUNT（集計）
+
+```
+sql_practice=# \i basic/08_left_join_count.sql
+ id |     name     | post_count 
+----+--------------+------------
+  1 | Alice Cooper |          2
+  2 | Bob          |          1
+  3 | Carol        |          0
+(3 rows)
+
+ id |     name     | post_count 
+----+--------------+------------
+  1 | Alice Cooper |          2
+  2 | Bob          |          1
+  3 | Carol        |          1
+(3 rows)
+
+ id |     name     | post_count 
+----+--------------+------------
+  1 | Alice Cooper |          2
+  2 | Bob          |          1
+(2 rows)
+
+ id |     name     | post_count 
+----+--------------+------------
+  1 | Alice Cooper |          2
+  2 | Bob          |          1
+  3 | Carol        |          0
+(3 rows)
+```
+
+- ① 正解パターン（基本）
+  - ユーザーごとの投稿数を出す
+  - 投稿がないユーザーも 0 件で表示される
+- ② 罠①：COUNT(*) を使うとどうなるか
+  - 投稿がないユーザーも 1 になってしまう
+- ③ 罠②：WHERE に posts 条件を書く
+  - LEFT JOIN なのに INNER JOIN の挙動になる
+- ④ 正解：絞り込み条件は ON に書く
+  - LEFT JOIN の性質を保ったまま集計できる
