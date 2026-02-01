@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict suy2YnIVOHrmPZzyQH8VV7vnIvoSglfPEL6nuNnsDOJxSyqchk1SLFmsgF9S73d
+\restrict 5hC6B3zuC95gE3Rbna8iaUA5qfa6eQkOpMvXslPZKVEPB17EMLzPnbfBeN4EJsG
 
 -- Dumped from database version 14.20 (Homebrew)
 -- Dumped by pg_dump version 14.20 (Homebrew)
@@ -173,6 +173,20 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: idx_posts_created_at; Type: INDEX; Schema: public; Owner: iidaryou
+--
+
+CREATE INDEX idx_posts_created_at ON public.posts USING btree (created_at);
+
+
+--
+-- Name: idx_posts_user_id; Type: INDEX; Schema: public; Owner: iidaryou
+--
+
+CREATE INDEX idx_posts_user_id ON public.posts USING btree (user_id);
+
+
+--
 -- Name: posts posts_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: iidaryou
 --
 
@@ -184,5 +198,5 @@ ALTER TABLE ONLY public.posts
 -- PostgreSQL database dump complete
 --
 
-\unrestrict suy2YnIVOHrmPZzyQH8VV7vnIvoSglfPEL6nuNnsDOJxSyqchk1SLFmsgF9S73d
+\unrestrict 5hC6B3zuC95gE3Rbna8iaUA5qfa6eQkOpMvXslPZKVEPB17EMLzPnbfBeN4EJsG
 
