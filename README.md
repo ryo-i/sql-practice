@@ -17,6 +17,7 @@ PostgreSQL + psql を使って学習した記録を残すものです。
 - [x] JOIN（行を増やす）
 - [x] JOIN + WHERE（絞り込み）
 - [x] JOIN + COUNT（集計）
+- [x] HAVING（集計結果の絞り込み）
 - [ ] GROUP BY（本格集計）
 - [ ] インデックス
 - [ ] 実行計画
