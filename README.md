@@ -18,7 +18,9 @@ PostgreSQL + psql を使って学習した記録を残すものです。
 - [x] JOIN + WHERE（絞り込み）
 - [x] JOIN + COUNT（集計）
 - [x] HAVING（集計結果の絞り込み）
-- [ ] GROUP BY（本格集計）
+- [x] GROUP BY 基本（集計軸の違いを比較）
+- [ ] 条件付き集計（CASE WHEN / HAVING）
+- [ ] 複合集計（2軸以上・分布）
 - [ ] インデックス
 - [ ] 実行計画
 
