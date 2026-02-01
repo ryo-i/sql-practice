@@ -15,7 +15,7 @@ PostgreSQL + psql を使って学習した記録を残すものです。
 - [x] 複数テーブル設計（外部キー）
 - [x] 外部キー制約の挙動確認
 - [x] JOIN（行を増やす）
-- [ ] JOIN + WHERE（絞り込み）
+- [x] JOIN + WHERE（絞り込み）
 - [ ] JOIN + COUNT（集計）
 - [ ] GROUP BY（本格集計）
 - [ ] インデックス

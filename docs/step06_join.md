@@ -52,3 +52,27 @@ JOIN は「行を増やす／減らす」操作
 - Carol が消える or 残る → JOIN種別の違い
 - JOIN = テーブル結合
 - 結果セットの形をどうしたいかで選ぶ
+
+
+### JOIN + WHERE（絞り込み）
+
+```
+sql_practice=# \i basic/07_join_where.sql
+ id |     name     |       title        
+----+--------------+--------------------
+  1 | Alice Cooper | 初めての投稿
+  2 | Bob          | Bobの日記
+  1 | Alice Cooper | Aliceの2つ目の投稿
+  3 | Carol        | 
+(4 rows)
+
+ id |     name     |       title        
+----+--------------+--------------------
+  1 | Alice Cooper | 初めての投稿
+  2 | Bob          | Bobの日記
+  1 | Alice Cooper | Aliceの2つ目の投稿
+(3 rows)
+```
+- Carol の posts.title は NULL → WHERE 条件に合わず除外
+- LEFT JOIN を使っていてもWHERE に右テーブルの条件を書くと LEFT じゃなくなる
+- 実質 INNER JOIN と同じ振る舞い
