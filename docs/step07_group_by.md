@@ -89,3 +89,65 @@ sql_practice=# \i basic/10_group_by_basic.sql
 | ----- | ----- | --------- |
 | users | ユーザー  | 0 件も含めたい  |
 | posts | 投稿    | 実績があるものだけ |
+
+
+### 条件付き集計（CASE WHEN）
+
+```
+sql_practice=# \i basic/11_group_by_case_when.sql
+ id |     name     | titled_post_count 
+----+--------------+-------------------
+  1 | Alice Cooper |                 2
+  2 | Bob          |                 1
+  3 | Carol        |                 0
+(3 rows)
+
+ id |     name     | has_posts 
+----+--------------+-----------
+  1 | Alice Cooper | t
+  2 | Bob          | t
+  3 | Carol        | f
+(3 rows)
+
+ id |     name     | keyword_post_count 
+----+--------------+--------------------
+  1 | Alice Cooper |                  2
+  2 | Bob          |                  0
+  3 | Carol        |                  0
+(3 rows)
+```
+
+① タイトルあり投稿数
+has_posts（真偽値フラグ）
+- CASE WHEN は 行単位で評価
+- 条件を満たした行だけ 1
+- 満たさない行は NULL
+- COUNT は NULL を数えない
+  - Alice: 投稿2件 → 2
+  - Bob: 投稿1件 → 1
+  - Carol: 投稿0件 → 0
+
+「条件を満たす行数を数える」王道パターン
+実務で一番よく使われる。
+
+② ユーザーごとの投稿有無フラグ
+has_posts（真偽値フラグ）
+
+- COUNTの結果をさらに CASE で包んでいる
+- 行ではなく グループ単位の判断
+  - 投稿が1件以上あるか？
+  - 管理画面の「有／無」「ON／OFF」判定に直結
+
+これは HAVING の代替ではない ところが重要。
+（HAVING は 行を落とす、これは 列として持つ）
+
+③ 条件付き件数（特定ワードを含む投稿）
+keyword_post_count（条件＋文字列）
+
+- 「投稿」という文字列を含むタイトルだけをカウント
+- Bob の Bobの日記 は条件不一致 → 0
+- Carol はそもそも投稿なし → 0
+- 検索条件つき集計
+  - タグ別件数
+  - ステータス別件数
+  - キーワード別件数
