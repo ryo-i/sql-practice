@@ -132,3 +132,111 @@ SELECT 文の書き方は変わらない
 - ORDER BY created_at もインデックスがあれば ソート処理が減る
 - ただし結果は常に同じ
 
+
+### 実行計画（EXPLAIN / EXPLAIN ANALYZE）
+
+```
+sql_practice=# \i basic/14_explain_basic.sql
+                                            QUERY PLAN                                            
+--------------------------------------------------------------------------------------------------
+ Seq Scan on posts p  (cost=0.00..1.04 rows=1 width=36) (actual time=0.201..0.205 rows=2 loops=1)
+   Filter: (user_id = 1)
+   Rows Removed by Filter: 1
+ Planning Time: 3.565 ms
+ Execution Time: 1.905 ms
+(5 rows)
+
+INSERT 0 10000
+                                                          QUERY PLAN                                                           
+-------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using idx_posts_user_id on posts p  (cost=0.27..8.29 rows=1 width=36) (actual time=0.135..0.356 rows=2488 loops=1)
+   Index Cond: (user_id = 1)
+ Planning Time: 0.022 ms
+ Execution Time: 0.416 ms
+(4 rows)
+
+                                                 QUERY PLAN                                                  
+-------------------------------------------------------------------------------------------------------------
+ Sort  (cost=96.57..97.20 rows=252 width=44) (actual time=6.496..7.154 rows=10003 loops=1)
+   Sort Key: created_at DESC
+   Sort Method: quicksort  Memory: 1166kB
+   ->  Seq Scan on posts  (cost=0.00..86.52 rows=252 width=44) (actual time=0.032..3.022 rows=10003 loops=1)
+ Planning Time: 0.200 ms
+ Execution Time: 7.616 ms
+(6 rows)
+
+TRUNCATE TABLE
+```
+
+① ダミーデータなし（件数が少ない）
+```
+Seq Scan on posts p
+Filter: (user_id = 1)
+Rows Removed by Filter: 1
+```
+何が起きている？
+- posts は 3件程度
+- PostgreSQL は判断しています：
+- 全件なめたほうが早い
+
+ポイント
+- インデックスは存在している
+- それでも Seq Scan が選ばれている
+- インデックス = 常に使われる、ではない
+- 件数が少ないとインデックスはむしろコストが高い
+
+② ダミーデータ投入後（1万件）
+```
+INSERT 0 10000
+```
+- posts が 10003件 に増加
+- 統計情報的に状況が変わった
+
+③ ダミーデータあり（user_id 絞り込み）
+```
+Index Scan using idx_posts_user_id on posts p
+Index Cond: (user_id = 1)
+```
+- Index Scan に切り替わった
+- idx_posts_user_id が明示的に使われている
+
+行数の読み方
+```
+rows=2488
+```
+- user_id = 1 の投稿が約 1/4
+- インデックス → 対象行だけ拾う → テーブル参照
+- インデックスの価値が初めて発揮された瞬間
+
+④ ORDER BY created_at（インデックスがあるのに？）
+```
+Seq Scan on posts
+Sort Method: quicksort
+```
+- idx_posts_created_at は 存在している
+- なのに Seq Scan + Sort
+
+PostgreSQL の判断：
+- 全部読むなら、インデックス順に読むよりまとめて読んでソートしたほうが安い
+
+特に今回は：
+- 全件取得
+- LIMIT なし
+- created_at インデックスは「全件 ORDER BY」では使われにくい
+
+もしこう書いたらどうなる？
+```
+SELECT id, title, created_at
+FROM posts
+ORDER BY created_at DESC
+LIMIT 10;
+```
+- Index Scan が選ばれる可能性が高い
+
+⑤ TRUNCATE の意味
+```
+TRUNCATE TABLE
+```
+- ダミーデータを 完全削除
+- ID もリセット
+- 次回実行に影響を残さない

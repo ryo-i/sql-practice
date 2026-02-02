@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 5hC6B3zuC95gE3Rbna8iaUA5qfa6eQkOpMvXslPZKVEPB17EMLzPnbfBeN4EJsG
+\restrict kjnnIuCMYzYxpcXmPl0bXqUcgMVKd4v0TouK1vQZFEsbhf92qVBFnU5NYor8tPC
 
 -- Dumped from database version 14.20 (Homebrew)
 -- Dumped by pg_dump version 14.20 (Homebrew)
@@ -117,9 +117,9 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 COPY public.posts (id, user_id, title, content, created_at) FROM stdin;
-1	1	初めての投稿	Alice の最初の投稿です	2026-01-25 22:59:07.128589
-2	2	Bobの日記	Bob が書いた投稿です	2026-01-25 22:59:07.128589
-3	1	Aliceの2つ目の投稿	Alice の追加の投稿	2026-01-25 22:59:07.128589
+1	1	初めての投稿	Alice の最初の投稿です	2026-02-02 22:57:38.911064
+2	2	Bobの日記	Bob が書いた投稿です	2026-02-02 22:57:38.911064
+3	1	Aliceの2つ目の投稿	Alice の追加の投稿	2026-02-02 22:57:38.911064
 \.
 
 
@@ -138,7 +138,7 @@ COPY public.users (id, name, email, created_at, age, city, is_active) FROM stdin
 -- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iidaryou
 --
 
-SELECT pg_catalog.setval('public.posts_id_seq', 4, true);
+SELECT pg_catalog.setval('public.posts_id_seq', 3, true);
 
 
 --
@@ -198,5 +198,5 @@ ALTER TABLE ONLY public.posts
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 5hC6B3zuC95gE3Rbna8iaUA5qfa6eQkOpMvXslPZKVEPB17EMLzPnbfBeN4EJsG
+\unrestrict kjnnIuCMYzYxpcXmPl0bXqUcgMVKd4v0TouK1vQZFEsbhf92qVBFnU5NYor8tPC
 

@@ -22,7 +22,7 @@ PostgreSQL + psql を使って学習した記録を残すものです。
 - [x] 条件付き集計（CASE WHEN）
 - [x] 複合集計（2軸以上・分布）
 - [x] インデックス（何に・なぜ貼るか）
-- [ ] 実行計画（EXPLAIN / EXPLAIN ANALYZE）
+- [x] 実行計画（EXPLAIN / EXPLAIN ANALYZE）
 
 ## 前提
 
